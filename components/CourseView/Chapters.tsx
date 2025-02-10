@@ -1,5 +1,5 @@
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import Entypo from "@expo/vector-icons/Entypo";
 import Color from "@/constant/Color";
 import { router } from "expo-router";
@@ -12,6 +12,7 @@ const Chapters = ({ course }: any) => {
     );
     return isCompleted ? true : false;
   };
+
   return (
     <View className="p-5">
       <Text className="font-semibold text-xl mb-3">Chapters</Text>

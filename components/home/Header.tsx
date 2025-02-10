@@ -9,11 +9,13 @@ const Header: React.FC = () => {
   return (
     <View className="flex-row justify-between items-center">
       <View>
-        <Text className="font-bold text-[25px]">Hello {userDetail?.name}</Text>
-        <Text className="text-lg">Let's Get Started</Text>
+        <Text className="font-bold text-[25px] text-white">
+          Hello {userDetail?.name}
+        </Text>
+        <Text className="text-lg text-white">Let's Get Started</Text>
       </View>
       <TouchableOpacity>
-        <Feather name="settings" size={32} color="black" />
+        <Feather name="settings" size={32} color="white" />
       </TouchableOpacity>
     </View>
   );

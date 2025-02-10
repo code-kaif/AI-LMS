@@ -1,4 +1,4 @@
-import { View, Text, Platform, FlatList } from "react-native";
+import { View, Text, Platform, FlatList, Image } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import Header from "../../components/home/Header";
 import Color from "../../constant/Color";
@@ -13,6 +13,7 @@ import CourseProgress from "@/components/home/CourseProgress";
 const Home = () => {
   const { userDetail, setUserDetail } = useContext(UserContext);
   const [courseList, setCourseList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (userDetail?.email) {
@@ -21,6 +22,7 @@ const Home = () => {
   }, [userDetail]);
 
   const GetCourseList = async () => {
+    setLoading(true);
     setCourseList([]);
     const q = query(
       collection(db, "courses"),
@@ -31,30 +33,37 @@ const Home = () => {
     querySnapShot.forEach((doc: any) => {
       setCourseList((prev) => [...prev, doc.data()]);
     });
+    setLoading(false);
   };
   return (
     <FlatList
       data={[]}
+      onRefresh={() => GetCourseList()}
+      refreshing={loading}
       showsVerticalScrollIndicator={false}
       ListHeaderComponent={
-        <View
-          style={{
-            padding: 25,
-            paddingTop: Platform.OS === "ios" && 45,
-            flex: 1,
-            backgroundColor: Color.White,
-          }}
-        >
-          <Header />
-          {courseList?.length == 0 ? (
-            <NoCourse />
-          ) : (
-            <View>
-              <CourseProgress courseList={courseList} />
-              <PracticeSection />
-              <CourseList courseList={courseList} />
-            </View>
-          )}
+        <View className="flex-1 bg-white">
+          <Image
+            source={require("../../assets/images/wave.png")}
+            className="absolute w-full"
+          />
+          <View
+            style={{
+              padding: 25,
+              paddingTop: Platform.OS === "ios" && 45,
+            }}
+          >
+            <Header />
+            {courseList?.length == 0 ? (
+              <NoCourse />
+            ) : (
+              <View>
+                <CourseProgress courseList={courseList} />
+                <PracticeSection />
+                <CourseList courseList={courseList} />
+              </View>
+            )}
+          </View>
         </View>
       }
     />

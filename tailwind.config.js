@@ -12,6 +12,7 @@ module.exports = {
       bGray: "#f2f2f2",
       black: "#000",
       green: "#29ba30",
+      lightGreen: "#dbffdd",
     },
   },
   plugins: [],

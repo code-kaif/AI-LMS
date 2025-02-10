@@ -1,6 +1,7 @@
-import { View, Text, FlatList, Image } from "react-native";
+import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { PracticeOption } from "@/constant/Option";
+import { router } from "expo-router";
 
 const PracticeSection = () => {
   return (
@@ -11,7 +12,10 @@ const PracticeSection = () => {
         numColumns={3}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
-          <View className="flex-1 m-2 rounded-lg overflow-hidden shadow-md bg-white">
+          <TouchableOpacity
+            onPress={() => router.push("/practice/" + item.name)}
+            className="flex-1 m-2 rounded-lg overflow-hidden shadow-md bg-white"
+          >
             <View className="relative">
               <Image source={item.image} className="w-full h-28" />
               <View className="absolute p-1 flex items-center justify-center">
@@ -20,7 +24,7 @@ const PracticeSection = () => {
                 </Text>
               </View>
             </View>
-          </View>
+          </TouchableOpacity>
         )}
       />
     </View>

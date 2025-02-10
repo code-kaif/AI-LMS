@@ -4,4 +4,5 @@ export default {
   Gray: "#858585",
   Bg_Gray: "#f2f2f2",
   Green: "#29ba30",
+  Light_Green: "#dbffdd",
 };

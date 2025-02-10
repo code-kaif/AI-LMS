@@ -23,7 +23,7 @@ const ChapterView = () => {
       completedChapter: arrayUnion(chapterIndex),
     });
     setLoading(false);
-    router.back();
+    router.replace("/courseView/" + docId);
   };
 
   return (

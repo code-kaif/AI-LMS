@@ -5,10 +5,15 @@ import * as Progress from "react-native-progress";
 import Color from "@/constant/Color";
 
 const CourseProgress = ({ courseList }) => {
-  console.log(courseList);
+  const GetCompletedChapter = (course: any) => {
+    const completedChapter = course?.completedChapter?.length;
+    const perc = completedChapter / course?.chapters?.length;
+    return perc;
+  };
+
   return (
     <View className="mt-5">
-      <Text className="text-xl font-bold text-gray-800 mb-3">
+      <Text className="text-xl text-white font-bold text-gray-800 mb-3">
         Course Progress
       </Text>
 
@@ -43,13 +48,14 @@ const CourseProgress = ({ courseList }) => {
             {/* Progress Bar */}
             <View className="mt-4">
               <Progress.Bar
-                progress={0.3}
+                progress={GetCompletedChapter(item)}
                 width={230}
                 color={Color.Primary}
                 borderRadius={5}
               />
               <Text className="text-gray-700 text-sm mt-2">
-                3 out of {item?.chapters?.length} chapters completed
+                {item?.completedChapter?.length ?? 0} Out of{" "}
+                {item?.chapters?.length} Chapters Completed
               </Text>
             </View>
           </View>
