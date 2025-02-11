@@ -13,6 +13,7 @@ module.exports = {
       black: "#000",
       green: "#29ba30",
       lightGreen: "#dbffdd",
+      light_Red: "#de857e",
     },
   },
   plugins: [],

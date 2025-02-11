@@ -39,7 +39,6 @@ const Quiz = () => {
         correctAns: quiz[currPage]?.correctAns,
       },
     }));
-    console.log(result);
   };
 
   const onQuizFinish = async () => {
@@ -48,8 +47,13 @@ const Quiz = () => {
       await updateDoc(doc(db, "courses", course?.docId), {
         quizResult: result,
       });
-
       setLoading(false);
+      router.replace({
+        pathname: "/quiz/summary",
+        params: {
+          quizResultParam: JSON.stringify(result),
+        },
+      });
     } catch (error) {
       setLoading(false);
       console.log(error);
